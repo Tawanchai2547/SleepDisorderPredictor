@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .result {
+            font-size: 24px; /* ปรับขนาดตัวอักษรให้ใหญ่ขึ้น */
+            font-weight: bold; /* ทำให้ข้อความหนาขึ้น */
+            color: #007bff; /* เปลี่ยนสีของข้อความ */
+            margin: 20px 0;
+        }
+        .recommendation {
+            font-size: 20px; /* ขนาดตัวอักษรสำหรับข้อความแนะนำ */
+            margin: 15px 0;
+            color: #555; /* สีข้อความแนะนำ */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none; /* ลบเส้นใต้จากลิงก์ */
+            color: #007bff; /* สีของลิงก์ */
+        }
+        a:hover {
+            text-decoration: underline; /* แสดงเส้นใต้เมื่อชี้เมาส์ */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p class="result">Your predicted sleep disorder is: {{ prediction }}</p>  <!-- แสดงผลลัพธ์ที่นี่ -->
+
+        {% if prediction == 'Sleep Apnea' %}
+            <p class="recommendation">We recommend you to see a doctor for further evaluation and treatment. Sleep Apnea can have serious health implications. 
+                For more information, you can visit <a href="https://www.sleepfoundation.org/sleep-apnea" target="_blank">Sleep Foundation - Sleep Apnea</a>.
+            </p>
+        {% elif prediction == 'Insomnia' %}
+            <p class="recommendation">We recommend you to consult a doctor to address your insomnia. It is important to understand the underlying causes. 
+                You can read more at <a href="https://www.sleepfoundation.org/insomnia" target="_blank">Sleep Foundation - Insomnia</a>.
+            </p>
+        {% elif prediction == 'None' %}
+            <p class="recommendation">You have no sleep disorders detected. However, maintaining a healthy sleep routine is essential for good health. 
+                Check out tips at <a href="https://www.sleepfoundation.org/sleep-hygiene" target="_blank">Sleep Foundation - Sleep Hygiene</a>.
+            </p>
+        {% endif %}
+
+        <a href="{% url 'predict' %}">Go Back</a>
+    </div>
+</body>
+</html>
